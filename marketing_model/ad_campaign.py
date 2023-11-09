@@ -3,12 +3,12 @@ import numpy as np
 from cashflow_model.base_model import BaseModel
 
 class AdCampaign(BaseModel):
-    '''Model an Ad campaign for a period of time, used to calculate the number of customers aquired'''
+    '''Model an ad campaign for a period of time, used to calculate the number of customers aquired'''
     
     def __init__(self, ad_viewers, click_rate=0.5, base_conv_rate=0.2, advert_timeframe=10, conv_decay=1, word_of_mouth_coeff=0.1, viewership_change_rate = 0.1):
         super().__init__()
         self.ad_viewers = ad_viewers 
-        self.viewership_change_rate = viewership_change_rate # rate of decay of ad-viewers monthly
+        self.viewership_change_rate = viewership_change_rate # rate of decrease of ad-viewers monthly
         self.click_rate = click_rate # rate of viewers clicking ad
         self.base_conv_rate = base_conv_rate # month 1 conversion rate (this may be constant for all rates, if conv_decay = 1)
         self.conv_decay = conv_decay # rate at which conversion rate will decrease monthly. base_conv_rate * conv_rate^month 
@@ -19,7 +19,7 @@ class AdCampaign(BaseModel):
         self.monthly_visitors = self.__init_empty_df(1)
 
         if self.advert_timeframe > self.model_timeframe:
-            raise ValueError ("advert_timeframe is longer than model_timeframe, check configurations")
+            raise ValueError ("Advert_timeframe is longer than model_timeframe, check configurations")
 
     def __init_empty_df(self, index_no, row_names = None):
         '''Creates an empty dataframe, filed with zeros'''
@@ -72,10 +72,10 @@ class AdCampaign(BaseModel):
         self.__calc_monthly_conv_rates()
         self.__calc_monthly_visitors()
         
-        df = self.__init_empty_df(2, ['Customers Acquired', 'Cumulative Customers'])
+        df = self.__init_empty_df(1, ['Customers Acquired'])
         
         df.loc['Customers Acquired'] = 0
-        df.loc['Cumulative Customers'] = 0
+        # df.loc['Cumulative Customers'] = 0
 
         customers_acquired_last_month = 0
 
@@ -94,11 +94,11 @@ class AdCampaign(BaseModel):
             # new customer aquired through 
             df.loc['Customers Acquired', month] = total_new_customers
         
-        df.loc['Cumulative Customers'] = df.loc['Customers Acquired'].cumsum()
+        # df.loc['Cumulative Customers'] = df.loc['Customers Acquired'].cumsum()
 
         df_rounded = df.apply(np.round).astype(int)
         
         newly_acquired_customers = df_rounded.loc['Customers Acquired'] 
-        cumulative_customers = df_rounded.loc['Cumulative Customers']
+        # cumulative_customers = df_rounded.loc['Cumulative Customers']
 
         return newly_acquired_customers

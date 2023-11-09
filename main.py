@@ -36,8 +36,8 @@ if __name__ == "__main__":
     tier_one_settings = configs.freemium_model['tier_1']
     tier_two_settings = configs.freemium_model['tier_1']
 
-    two_tier_model_configs = ((tier_one_settings.price, tier_one_settings.proportion), 
-                              (tier_two_settings.price, tier_two_settings.proportion))
+    two_tier_model_configs = ((tier_one_settings.price, tier_one_settings.proportion, tier_one_settings.churn_rate), 
+                              (tier_two_settings.price, tier_two_settings.proportion, tier_two_settings.churn_rate))
 
     # initialise subscription model with parameters
     tiered_access_model = SubscriptionModel(
@@ -48,7 +48,9 @@ if __name__ == "__main__":
     # calculate total revenue
     tiered_access_revenue = tiered_access_model.calc_total_revenue()
 
-    # initialise financial model with previous data
-    financial_model = FinancialModel(
-        tiered_access_revenue)
+    print(tiered_access_revenue)
+
+    # # initialise financial model with previous data
+    # financial_model = FinancialModel(
+    #     tiered_access_revenue)
 

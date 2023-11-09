@@ -2,6 +2,7 @@ import yaml
 
 class ConfigLoader:
     '''Reads a YAML file and converts it to dictionary'''
+    
     def __init__(self):
         pass
     
