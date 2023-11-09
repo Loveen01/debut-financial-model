@@ -22,9 +22,10 @@ ad_campaigns:
     conv_decay: 0.2           # rate at which conversion rate will decrease monthly. base_conv_rate * conv_rate^month 
     advert_timeframe: 21        # period of time to keep advert for
     word_of_mouth_coeff: 0.9     # 1 means we have the same wom customers as last months newcomers (very optimistic)
-  # add any other add campaign here, e.g. 
-  # instagram:
-      # viewership_change_rate: etc ...
+   
+    ---- add any other add campaign here, e.g. 
+  instagram:
+    viewership_change_rate: etc ...
 
 freemium_model:
   tier_1 : 
