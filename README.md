@@ -23,7 +23,7 @@ ad_campaigns:
     advert_timeframe: 21        # period of time to keep advert for
     word_of_mouth_coeff: 0.9     # 1 means we have the same wom customers as last months newcomers (very optimistic)
    
-    ---- add any other add campaign here, e.g. 
+  add any other add campaign here, e.g. 
   instagram:
     viewership_change_rate: etc ...
 
@@ -36,9 +36,3 @@ freemium_model:
     price: 5
     proportion: 0.2
     churn_rate: 0.2
-
-# Usage example:
-This example incorporates decay over the course of the advert timespan and a simple word-of-mouth effect. Adjust the decay_rate, word_of_mouth_coeff, and residual factors to fit your campaign's performance data or industry benchmarks.
-
-
-Keep in mind that this is still a simplified model. Real-world customer acquisition modeling can be much more complex and may involve machine learning algorithms or sophisticated statistical methods to predict outcomes with higher accuracy.
